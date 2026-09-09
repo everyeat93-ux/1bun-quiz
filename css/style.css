@@ -190,6 +190,52 @@ html, body {
 }
 
 /* ==========================================================================
+   Category Filter Tabs Navigation
+   ========================================================================== */
+.category-tabs-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 2px 14px 2px;
+  margin-bottom: 8px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.category-tabs-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.category-tab {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.category-tab:hover {
+  color: var(--text-primary);
+  background: var(--surface-hover);
+  border-color: var(--border-highlight);
+  transform: translateY(-1px);
+}
+
+.category-tab.active {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #FFFFFF;
+  border-color: var(--primary-light);
+  box-shadow: 0 4px 14px var(--primary-glow);
+}
+
+/* ==========================================================================
    Date & Progress Subheader
    ========================================================================== */
 .quiz-meta-bar {
@@ -664,6 +710,31 @@ html, body {
 .btn-share:hover {
   background: rgba(254, 229, 0, 0.25);
   border-color: #FDE047;
+}
+
+.btn-next-quiz {
+  grid-column: span 2;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #FFFFFF;
+  font-size: 0.98rem;
+  font-weight: 800;
+  padding: 15px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 20px var(--primary-glow);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 2px;
+}
+
+.btn-next-quiz:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.55);
+  filter: brightness(1.08);
 }
 
 .btn-bonus {

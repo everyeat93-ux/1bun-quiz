@@ -83,36 +83,54 @@
     }
 
     /**
-     * Calculate deterministically which of the 1,825 quizzes belongs to today
+     * Get list of unique categories
      */
-    getTodayQuizIndex(date = new Date()) {
+    getCategories() {
+      return ['ALL', '맞춤법', '시사·경제', '역사·문화', '과학·IT', '생활·상식'];
+    }
+
+    /**
+     * Get quizzes filtered by category
+     */
+    getQuizzesByCategory(category = 'ALL') {
+      if (!this.quizzes || this.quizzes.length === 0) return [];
+      if (!category || category === 'ALL') return this.quizzes;
+      return this.quizzes.filter(q => q.category === category);
+    }
+
+    /**
+     * Calculate deterministically which quiz belongs to today for given pool
+     */
+    getTodayQuizIndex(category = 'ALL', date = new Date()) {
+      const pool = this.getQuizzesByCategory(category);
+      if (pool.length === 0) return 0;
       const todayZero = new Date(date.getFullYear(), date.getMonth(), date.getDate());
       const diffMs = todayZero - REFERENCE_DATE;
       const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-      const totalQuizzes = this.quizzes.length || 1825;
-      const index = ((diffDays % totalQuizzes) + totalQuizzes) % totalQuizzes;
-      return index;
+      return ((diffDays % pool.length) + pool.length) % pool.length;
     }
 
     /**
-     * Get Today's Quiz
+     * Get Today's Quiz (supports category filter)
      */
-    getTodayQuiz(date = new Date()) {
-      if (!this.quizzes || this.quizzes.length === 0) return null;
-      const index = this.getTodayQuizIndex(date);
-      return this.quizzes[index];
+    getTodayQuiz(category = 'ALL', date = new Date()) {
+      const pool = this.getQuizzesByCategory(category);
+      if (pool.length === 0) return null;
+      const index = this.getTodayQuizIndex(category, date);
+      return pool[index];
     }
 
     /**
-     * Pick a random quiz from the 1,825 dataset for Bonus Mode
+     * Pick a random quiz from the dataset for Bonus / Next Question mode
      */
-    getRandomBonusQuiz(excludeId = null) {
-      if (!this.quizzes || this.quizzes.length === 0) return null;
+    getRandomBonusQuiz(category = 'ALL', excludeId = null) {
+      const pool = this.getQuizzesByCategory(category);
+      if (pool.length === 0) return null;
       let candidate;
       let tries = 0;
       do {
-        const randomIndex = Math.floor(Math.random() * this.quizzes.length);
-        candidate = this.quizzes[randomIndex];
+        const randomIndex = Math.floor(Math.random() * pool.length);
+        candidate = pool[randomIndex];
         tries++;
       } while (candidate && candidate.id === excludeId && tries < 10);
       return candidate;

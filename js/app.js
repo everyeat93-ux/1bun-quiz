@@ -11,8 +11,11 @@
   let selectedChoice = null;
   let isBonusMode = false;
   let isSubmitting = false;
+  let selectedCategory = 'ALL';
 
   // DOM Elements
+  const categoryTabs = document.querySelectorAll('.category-tab');
+  const nextQuizBtn = document.getElementById('next-quiz-btn');
   const questionTextEl = document.getElementById('question-text');
   const optionBtnA = document.getElementById('option-btn-a');
   const optionBtnB = document.getElementById('option-btn-b');
@@ -112,7 +115,7 @@
     isBonusMode = false;
     modeBanner.classList.remove('active');
 
-    currentQuiz = window.QuizEngine.getTodayQuiz();
+    currentQuiz = window.QuizEngine.getTodayQuiz(selectedCategory);
     if (!currentQuiz) return;
 
     renderQuizView(currentQuiz, false);
@@ -146,11 +149,25 @@
     resultSection.classList.remove('active');
 
     // Quiz Category & Number
-    quizCategoryTag.textContent = quiz.category || '맞춤법';
+    const catEmojis = {
+      '맞춤법': '📝',
+      '시사·경제': '💡',
+      '역사·문화': '🏛️',
+      '과학·IT': '🔬',
+      '생활·상식': '☕'
+    };
+    const emoji = catEmojis[quiz.category] || '✨';
+    quizCategoryTag.textContent = `${emoji} ${quiz.category || '상식'}`;
     if (isBonus) {
-      quizIndexIndicator.textContent = `보너스 문제 #${quiz.id} / 1,825`;
+      quizIndexIndicator.textContent = `추천 상식 #${quiz.id} / 2,000`;
     } else {
-      quizIndexIndicator.textContent = `오늘의 문제 #${quiz.id} / 1,825`;
+      quizIndexIndicator.textContent = `오늘의 상식 #${quiz.id} / 2,000`;
+    }
+
+    // Dynamic explanation header
+    const expHeader = document.querySelector('.explanation-header span');
+    if (expHeader) {
+      expHeader.textContent = (quiz.category === '맞춤법') ? '국립국어원 표준 해설' : `${quiz.category} 핵심 해설`;
     }
 
     // Question Text with highlighted brackets
@@ -286,13 +303,13 @@
   }
 
   /**
-   * Load a Random Bonus Quiz from the 1,825 Pool
+   * Load a Random Bonus/Next Quiz from the Pool (supports category filter)
    */
   function loadBonusQuiz() {
     isBonusMode = true;
     modeBanner.classList.add('active');
 
-    const bonusQuiz = window.QuizEngine.getRandomBonusQuiz(currentQuiz ? currentQuiz.id : null);
+    const bonusQuiz = window.QuizEngine.getRandomBonusQuiz(selectedCategory, currentQuiz ? currentQuiz.id : null);
     if (!bonusQuiz) return;
 
     currentQuiz = bonusQuiz;
@@ -300,7 +317,39 @@
 
     // Scroll smoothly to top of main card
     document.getElementById('main-quiz-card').scrollIntoView({ behavior: 'smooth' });
-    window.ShareHelper.showToast('🚀 보너스 연습 모드가 시작되었습니다!');
+    window.ShareHelper.showToast(`🚀 ${selectedCategory === 'ALL' ? '상식' : selectedCategory} 퀴즈가 시작되었습니다!`);
+  }
+
+  function loadNextQuiz() {
+    loadBonusQuiz();
+  }
+
+  /**
+   * Setup Category Tabs Navigation
+   */
+  function setupCategoryTabs() {
+    categoryTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const cat = tab.getAttribute('data-category');
+        selectCategory(cat);
+      });
+    });
+  }
+
+  function selectCategory(cat) {
+    selectedCategory = cat;
+    categoryTabs.forEach(tab => {
+      tab.classList.toggle('active', tab.getAttribute('data-category') === cat);
+    });
+
+    if (isBonusMode) {
+      loadBonusQuiz();
+    } else {
+      currentQuiz = window.QuizEngine.getTodayQuiz(selectedCategory);
+      if (currentQuiz) {
+        renderQuizView(currentQuiz, false);
+      }
+    }
   }
 
   /**
@@ -352,9 +401,17 @@
 
     confirmAnswerBtn.addEventListener('click', submitAnswer);
 
-    // Bonus Mode triggers
-    bonusQuizBtn.addEventListener('click', loadBonusQuiz);
+    // Next Quiz & Bonus Mode triggers
+    if (nextQuizBtn) {
+      nextQuizBtn.addEventListener('click', loadNextQuiz);
+    }
+    if (bonusQuizBtn) {
+      bonusQuizBtn.addEventListener('click', loadBonusQuiz);
+    }
     returnTodayQuizBtn.addEventListener('click', loadTodayQuiz);
+
+    // Category Tabs
+    setupCategoryTabs();
 
     // Share & Install
     shareQuizBtn.addEventListener('click', () => {

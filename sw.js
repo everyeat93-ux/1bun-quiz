@@ -1,5 +1,5 @@
-// 딱1분 맞춤법 퀴즈 - Service Worker
-const CACHE_NAME = 'ttak1bun-quiz-v2';
+// 딱1분 상식 퀴즈 - Service Worker
+const CACHE_NAME = 'ttak1bun-quiz-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#0B0F19">
-  <meta name="description" content="하루 10초 투자로 한국어 맞춤법과 상식을 채우는 매일 1분 루틴 퀴즈. 총 1,825개의 엄선된 국립국어원 표준 퀴즈와 해설 제공!">
-  <meta name="keywords" content="맞춤법, 맞춤법 퀴즈, 오늘의 퀴즈, 한국어 퀴즈, 1분 루틴, 국립국어원, 상식 퀴즈">
+  <meta name="description" content="하루 10초 투자로 한국어 맞춤법과 시사·경제, 역사, 과학, 생활 상식을 채우는 매일 1분 루틴 퀴즈. 총 2,000개의 엄선된 퀴즈와 명쾌한 해설!">
+  <meta name="keywords" content="상식 퀴즈, 맞춤법 퀴즈, 오늘의 상식, 시사 경제 퀴즈, 역사 퀴즈, 과학 퀴즈, 1분 루틴">
   <meta name="author" content="딱 1분 개발팀(COLLCO)">
 
   <!-- Open Graph / Kakao / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="딱1분 맞춤법 퀴즈 - 하루 10초 한국어 상식 루틴">
-  <meta property="og:description" content="오늘의 맞춤법 문제: 당신은 정답을 알고 계신가요? 매일 1분으로 맞춤법 마스터!">
+  <meta property="og:title" content="딱1분 상식 퀴즈 - 하루 10초 맞춤법 & 상식 루틴">
+  <meta property="og:description" content="오늘의 상식 문제: 당신은 정답을 알고 계신가요? 매일 1분으로 두뇌 트레이닝!">
   <meta property="og:image" content="./assets/icon.svg">
 
   <!-- Favicon & PWA -->
@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 
-  <title>딱1분 맞춤법 퀴즈 | 매일 1분 루틴</title>
+  <title>딱1분 상식 퀴즈 | 맞춤법 & 데일리 상식 루틴</title>
 
   <!-- Google AdSense Official Tag (Publisher ID: ca-pub-5159285704643995) -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5159285704643995" crossorigin="anonymous"></script>
@@ -45,7 +45,7 @@
         <div class="brand-icon">
           <img src="./assets/icon.svg" alt="딱1분 로고">
         </div>
-        <span class="brand-title">딱1분 퀴즈</span>
+        <span class="brand-title">딱1분 상식 퀴즈</span>
       </a>
 
       <div class="header-actions">
@@ -66,6 +66,16 @@
       </div>
     </header>
 
+    <!-- Category Filter Tabs Navigation -->
+    <nav class="category-tabs-bar" id="category-tabs-bar" aria-label="퀴즈 카테고리 선택">
+      <button type="button" class="category-tab active" data-category="ALL">🌟 전체</button>
+      <button type="button" class="category-tab" data-category="맞춤법">📝 맞춤법</button>
+      <button type="button" class="category-tab" data-category="시사·경제">💡 시사·경제</button>
+      <button type="button" class="category-tab" data-category="역사·문화">🏛️ 역사·문화</button>
+      <button type="button" class="category-tab" data-category="과학·IT">🔬 과학·IT</button>
+      <button type="button" class="category-tab" data-category="생활·상식">☕ 생활·상식</button>
+    </nav>
+
     <!-- Quiz Subheader & Meta Bar -->
     <div class="quiz-meta-bar">
       <div class="date-badge" id="today-date-text">
@@ -83,7 +93,7 @@
 
     <!-- Mode Indicator Banner (Shown in Bonus / Practice Mode) -->
     <div class="mode-banner" id="mode-banner">
-      <span>🚀 <strong>보너스 연습 모드</strong> (1,825 퀴즈 풀)</span>
+      <span>🚀 <strong>상식 마스터 모드</strong> (2,000 문제 풀)</span>
       <button type="button" class="reset-daily-btn" id="return-today-quiz-btn">오늘의 퀴즈로</button>
     </div>
 
@@ -177,6 +187,11 @@
 
         <!-- Action Grid: Share & Retention & Bonus -->
         <div class="action-grid">
+          <!-- Next Knowledge Quiz Button -->
+          <button type="button" class="btn-primary btn-next-quiz" id="next-quiz-btn">
+            <span>⚡ 다음 상식 문제 풀기 (2,000문제 보유) ➔</span>
+          </button>
+
           <button type="button" class="btn-secondary btn-share" id="share-quiz-btn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="18" cy="5" r="3"></circle>
@@ -205,24 +220,27 @@
       </section>
     </main>
 
-    <!-- SEO & Value Content: 맞춤법 꿀팁 & 상식 가이드 (AdSense 심사용 유효 콘텐츠) -->
-    <section class="home-info-section" aria-label="맞춤법 상식 가이드">
+    <!-- SEO & Value Content: 맞춤법 & 필수 상식 가이드 (AdSense 심사용 유효 콘텐츠) -->
+    <section class="home-info-section" aria-label="맞춤법 및 상식 가이드">
       <h2 class="home-info-title">
         <span>📖</span>
-        <span>매일 알아두면 유용한 한국어 맞춤법 가이드</span>
+        <span>매일 알아두면 유용한 맞춤법 & 핵심 상식 가이드</span>
       </h2>
       <div class="guide-tip-list">
         <div class="guide-tip-item">
-          <strong>'웬일' vs '왠일':</strong> '왠'은 '왜인지'의 준말인 '왠지'에서만 쓰입니다. 그 외 '웬일', '웬 떡', '웬만하면'은 모두 '웬'이 바른 표기입니다.
+          <strong>📝 맞춤법 '웬일' vs '왠일':</strong> '왠'은 '왜인지'의 준말인 '왠지'에서만 쓰입니다. 그 외 '웬일', '웬 떡', '웬만하면'은 모두 '웬'이 바른 표기입니다.
         </div>
         <div class="guide-tip-item">
-          <strong>'며칠' vs '몇일':</strong> 현대 국어 표준어 규정상 '몇 일'이라는 표기는 존재하지 않으며, 항상 '며칠'로 통일하여 적습니다.
+          <strong>💡 경제 '인플레이션과 금리':</strong> 물가가 급등할 때 중앙은행은 시중의 통화량을 줄이기 위해 기준금리를 인상하여 물가를 안정시킵니다.
         </div>
         <div class="guide-tip-item">
-          <strong>'어떻게' vs '어떡해':</strong> '어떻게'는 '어떠하게'의 준말(부사형), '어떡해'는 '어떻게 해'의 준말(문장 종결형)입니다.
+          <strong>☕ 생활 '달걀 껍데기와 뼈':</strong> 동물의 사료나 비료로 재활용할 수 없는 조개껍데기, 달걀 껍질, 치킨 뼈는 일반 종량제 봉투로 배출해야 합니다.
         </div>
         <div class="guide-tip-item">
-          <strong>'되' vs '돼':</strong> '하'를 넣어 말이 되면 '되', '해'를 넣어 말이 되면 '돼'입니다. (예: 안 되다 → 안 하다 / 안 돼 → 안 해)
+          <strong>🔬 과학 '빛의 속도':</strong> 빛은 진공 상태에서 1초에 약 30만 km를 이동하며, 1초 만에 지구를 7바퀴 반 돌 수 있습니다.
+        </div>
+        <div class="guide-tip-item">
+          <strong>🏛️ 역사 '세계 최초 금속활자':</strong> 1377년 고려에서 인쇄된 '직지심체요절'은 서양 구텐베르크보다 앞선 세계 최초의 금속활자본입니다.
         </div>
       </div>
     </section>
