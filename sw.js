@@ -1,5 +1,5 @@
 // 딱1분 상식 퀴즈 - Service Worker
-const CACHE_NAME = 'ttak1bun-quiz-v3';
+const CACHE_NAME = 'ttak1bun-quiz-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

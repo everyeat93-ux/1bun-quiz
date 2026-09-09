@@ -158,10 +158,11 @@
     };
     const emoji = catEmojis[quiz.category] || '✨';
     quizCategoryTag.textContent = `${emoji} ${quiz.category || '상식'}`;
+    const totalCount = (window.QuizEngine.quizzes && window.QuizEngine.quizzes.length) ? window.QuizEngine.quizzes.length.toLocaleString() : '3,750';
     if (isBonus) {
-      quizIndexIndicator.textContent = `추천 상식 #${quiz.id} / 2,000`;
+      quizIndexIndicator.textContent = `추천 상식 #${quiz.id} / ${totalCount}`;
     } else {
-      quizIndexIndicator.textContent = `오늘의 상식 #${quiz.id} / 2,000`;
+      quizIndexIndicator.textContent = `오늘의 상식 #${quiz.id} / ${totalCount}`;
     }
 
     // Dynamic explanation header
