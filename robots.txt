@@ -7,4 +7,4 @@ Allow: /
 User-agent: Googlebot
 Allow: /
 
-Sitemap: /sitemap.xml
+Sitemap: https://1bun-quiz.kr/sitemap.xml
