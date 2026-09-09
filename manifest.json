@@ -1,0 +1,20 @@
+{
+  "name": "딱1분 맞춤법 퀴즈",
+  "short_name": "딱1분퀴즈",
+  "description": "하루 10초 투자로 잡학상식과 맞춤법을 익히는 매일 1분 루틴 퀴즈",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#4F46E5",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./assets/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "lifestyle", "productivity"],
+  "lang": "ko-KR"
+}

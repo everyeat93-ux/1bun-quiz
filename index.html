@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0B0F19">
+  <meta name="description" content="하루 10초 투자로 한국어 맞춤법과 상식을 채우는 매일 1분 루틴 퀴즈. 총 1,825개의 엄선된 국립국어원 표준 퀴즈와 해설 제공!">
+  <meta name="keywords" content="맞춤법, 맞춤법 퀴즈, 오늘의 퀴즈, 한국어 퀴즈, 1분 루틴, 국립국어원, 상식 퀴즈">
+  <meta name="author" content="딱1분">
+
+  <!-- Open Graph / Kakao / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="딱1분 맞춤법 퀴즈 - 하루 10초 한국어 상식 루틴">
+  <meta property="og:description" content="오늘의 맞춤법 문제: 당신은 정답을 알고 계신가요? 매일 1분으로 맞춤법 마스터!">
+  <meta property="og:image" content="./assets/icon.svg">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="./assets/icon.svg">
+  <link rel="apple-touch-icon" href="./assets/icon.svg">
+  <link rel="manifest" href="./manifest.json">
+
+  <!-- Google Fonts & Pretendard -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+
+  <title>딱1분 맞춤법 퀴즈 | 매일 1분 루틴</title>
+
+  <!-- Google AdSense Official Tag (Publisher ID: ca-pub-5159285704643995) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5159285704643995" crossorigin="anonymous"></script>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- Confetti Celebration Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="app-container">
+    
+    <!-- Top Header Navigation -->
+    <header class="header-bar">
+      <a href="./index.html" class="brand-logo" id="brand-home-link" aria-label="딱1분 홈으로 이동">
+        <div class="brand-icon">
+          <img src="./assets/icon.svg" alt="딱1분 로고">
+        </div>
+        <span class="brand-title">딱1분 퀴즈</span>
+      </a>
+
+      <div class="header-actions">
+        <!-- Streak Button -->
+        <button type="button" class="streak-pill" id="streak-trigger-btn" aria-label="내 스트릭 확인하기">
+          <span class="flame-icon">🔥</span>
+          <span id="streak-count-display">0일</span>
+        </button>
+
+        <!-- Stats / Info Button -->
+        <button type="button" class="icon-btn" id="stats-modal-open-btn" aria-label="통계 및 업적 보기">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 20V10"></path>
+            <path d="M12 20V4"></path>
+            <path d="M6 20v-6"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Quiz Subheader & Meta Bar -->
+    <div class="quiz-meta-bar">
+      <div class="date-badge" id="today-date-text">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        <span>2026.09.09</span>
+      </div>
+
+      <span class="category-tag" id="quiz-category-tag">맞춤법</span>
+    </div>
+
+    <!-- Mode Indicator Banner (Shown in Bonus / Practice Mode) -->
+    <div class="mode-banner" id="mode-banner">
+      <span>🚀 <strong>보너스 연습 모드</strong> (1,825 퀴즈 풀)</span>
+      <button type="button" class="reset-daily-btn" id="return-today-quiz-btn">오늘의 퀴즈로</button>
+    </div>
+
+    <!-- Main Quiz Card -->
+    <main class="card" id="main-quiz-card">
+      <div class="quiz-card-header">
+        <span class="quiz-index-badge" id="quiz-index-indicator">오늘의 문제 #252</span>
+        <span class="routine-time-badge">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          소요 시간: 10초
+        </span>
+      </div>
+
+      <!-- Question Text -->
+      <div class="question-box">
+        <p class="question-guide">알맞은 바른 표현을 골라보세요!</p>
+        <h1 class="question-text" id="question-text">
+          문제를 불러오는 중입니다...
+        </h1>
+      </div>
+
+      <!-- 2-Choice Selection Cards -->
+      <div class="options-grid" id="options-grid" role="radiogroup" aria-label="맞춤법 선택지">
+        <button type="button" class="option-btn" id="option-btn-a" data-choice="A" role="radio" aria-checked="false">
+          <span class="option-label">A</span>
+          <span class="option-text" id="option-text-a">-</span>
+        </button>
+
+        <button type="button" class="option-btn" id="option-btn-b" data-choice="B" role="radio" aria-checked="false">
+          <span class="option-label">B</span>
+          <span class="option-text" id="option-text-b">-</span>
+        </button>
+      </div>
+
+      <!-- Check Answer Action Button -->
+      <button type="button" class="btn-primary" id="confirm-answer-btn" disabled>
+        <span>선택지를 골라주세요</span>
+      </button>
+
+      <!-- In-Card High Intent Ad Slot (AdSense Target Area) -->
+      <section class="ad-slot-container" id="in-card-ad-slot" aria-label="스폰서 광고">
+        <span class="ad-label">AD / 후원</span>
+        <!-- Google AdSense Tag -->
+        <ins class="adsbygoogle"
+             style="display:block; width:100%; min-height:90px;"
+             data-ad-client="ca-pub-5159285704643995"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <!-- Development / Fallback Notice when AdSense is reviewing domain -->
+        <div class="ad-fallback-placeholder" id="ad-placeholder">
+          <div>📢 딱1분 퀴즈 스폰서 배너 영역</div>
+          <span>(AdSense ID: pub-5159285704643995 연동 완료)</span>
+        </div>
+      </section>
+
+      <!-- Result & Explanation (Expands on answer) -->
+      <section class="result-section" id="result-section" aria-live="polite">
+        
+        <!-- Correct / Wrong Banner -->
+        <div class="result-banner" id="result-banner">
+          <div class="result-icon" id="result-icon">🎉</div>
+          <div>
+            <div class="result-title" id="result-title">정답입니다!</div>
+            <div class="result-subtitle" id="result-subtitle">오늘의 1분 상식을 채웠습니다.</div>
+          </div>
+        </div>
+
+        <!-- Explanation Card -->
+        <div class="explanation-card">
+          <div class="explanation-header">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+            <span>국립국어원 표준 해설</span>
+          </div>
+          <p class="explanation-body" id="explanation-body">
+            해설을 불러오는 중입니다.
+          </p>
+
+          <!-- 3-Second Memory Tip -->
+          <div class="tip-box" id="tip-box">
+            <strong>💡 3초 암기 팁:</strong>
+            <span id="tip-text">-</span>
+          </div>
+        </div>
+
+        <!-- Action Grid: Share & Retention & Bonus -->
+        <div class="action-grid">
+          <button type="button" class="btn-secondary btn-share" id="share-quiz-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+            <span>친구에게 퀴즈 공유</span>
+          </button>
+
+          <button type="button" class="btn-secondary" id="install-pwa-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+            <span>홈 화면에 추가</span>
+          </button>
+
+          <!-- 1825 Bonus Practice Mode Button -->
+          <button type="button" class="btn-secondary btn-bonus" id="bonus-quiz-btn">
+            <span>⚡ 보너스 문제 풀기 (1,825문제 보유)</span>
+          </button>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Bottom Sticky Anchor Ad (Google AdSense 320x50 / Responsive) -->
+    <aside class="bottom-anchor-ad" id="bottom-anchor-ad" aria-label="하단 배너 광고">
+      <ins class="adsbygoogle"
+           style="display:inline-block;width:320px;height:50px"
+           data-ad-client="ca-pub-5159285704643995"
+           data-ad-slot="9876543210"></ins>
+    </aside>
+
+  </div>
+
+  <!-- Streak & Stats Modal -->
+  <div class="modal-overlay" id="stats-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" id="stats-modal-close-btn" aria-label="닫기">&times;</button>
+      <h2 class="modal-title" id="modal-title">내 학습 기록 & 스트릭</h2>
+
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value" id="stat-current-streak">0일</div>
+          <div class="stat-label">현재 연속 출석 (🔥)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="stat-max-streak">0일</div>
+          <div class="stat-label">역대 최고 연속 기록</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="stat-total-solved">0개</div>
+          <div class="stat-label">총 푼 문제 수</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="stat-accuracy">0%</div>
+          <div class="stat-label">누적 정답률</div>
+        </div>
+      </div>
+
+      <!-- Streak Milestone Badges -->
+      <div class="streak-badges-row">
+        <div class="badge-item" id="badge-streak-3">
+          <div class="badge-icon">🥉</div>
+          <div>3일 달성</div>
+        </div>
+        <div class="badge-item" id="badge-streak-7">
+          <div class="badge-icon">🥈</div>
+          <div>7일 달성</div>
+        </div>
+        <div class="badge-item" id="badge-streak-30">
+          <div class="badge-icon">🥇</div>
+          <div>30일 달성</div>
+        </div>
+        <div class="badge-item" id="badge-streak-100">
+          <div class="badge-icon">👑</div>
+          <div>100일 달성</div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-primary" id="modal-confirm-btn">확인</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification Message -->
+  <div class="toast-msg" id="toast-msg" role="status" aria-live="polite">
+    클립보드에 복사되었습니다!
+  </div>
+
+  <!-- Scripts -->
+  <script src="./js/quizEngine.js"></script>
+  <script src="./js/share.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
