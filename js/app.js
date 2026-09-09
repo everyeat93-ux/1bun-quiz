@@ -158,7 +158,7 @@
     };
     const emoji = catEmojis[quiz.category] || '✨';
     quizCategoryTag.textContent = `${emoji} ${quiz.category || '상식'}`;
-    const totalCount = (window.QuizEngine.quizzes && window.QuizEngine.quizzes.length) ? window.QuizEngine.quizzes.length.toLocaleString() : '9,000';
+    const totalCount = (window.QuizEngine.quizzes && window.QuizEngine.quizzes.length) ? window.QuizEngine.quizzes.length.toLocaleString() : '10,000';
     if (isBonus) {
       quizIndexIndicator.textContent = `추천 상식 #${quiz.id} / ${totalCount}`;
     } else {
