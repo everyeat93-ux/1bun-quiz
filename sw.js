@@ -1,8 +1,12 @@
 // 딱1분 맞춤법 퀴즈 - Service Worker
-const CACHE_NAME = 'ttak1bun-quiz-v1';
+const CACHE_NAME = 'ttak1bun-quiz-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './about.html',
+  './privacy.html',
+  './terms.html',
+  './contact.html',
   './css/style.css',
   './js/app.js',
   './js/quizEngine.js',

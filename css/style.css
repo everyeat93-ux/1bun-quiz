@@ -831,6 +831,313 @@ html, body {
 }
 
 /* ==========================================================================
+   Footer & Legal Navigation
+   ========================================================================== */
+.footer-bar {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover, .footer-links a.active {
+  color: var(--primary-light);
+  text-decoration: underline;
+}
+
+.footer-links .sep {
+  color: var(--border-subtle);
+  opacity: 0.6;
+}
+
+.copyright {
+  color: var(--text-muted);
+  font-size: 0.74rem;
+}
+
+/* ==========================================================================
+   Legal & Subpages Styles
+   ========================================================================== */
+.legal-container {
+  max-width: 680px;
+}
+
+.back-link-btn {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.86rem;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.back-link-btn:hover {
+  color: var(--text-primary);
+  background: var(--surface-hover);
+  border-color: var(--border-highlight);
+}
+
+.legal-card {
+  padding: 28px 24px;
+  margin-bottom: 24px;
+}
+
+.legal-heading {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.legal-subtitle {
+  color: var(--primary-light);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.legal-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.legal-section {
+  margin-bottom: 24px;
+}
+
+.legal-section h2 {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legal-section p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.legal-section ul {
+  list-style: disc inside;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-left: 8px;
+  margin-bottom: 12px;
+}
+
+.legal-section li {
+  margin-bottom: 8px;
+}
+
+.text-link {
+  color: var(--primary-light);
+  text-decoration: underline;
+}
+
+.contact-box {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-top: 10px;
+}
+
+.contact-box p {
+  margin-bottom: 6px;
+  font-size: 0.88rem;
+}
+
+.legal-footer-nav {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.legal-nav-link {
+  color: var(--primary-light);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.legal-nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Feature Grid for About page */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+@media (min-width: 500px) {
+  .feature-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.feature-icon {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.feature-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.feature-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* Contact Channels */
+.contact-channels {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.channel-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 18px;
+}
+
+.channel-icon {
+  font-size: 2rem;
+}
+
+.channel-info h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.channel-info p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+/* FAQ Accordion */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.faq-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.faq-item summary {
+  font-size: 0.94rem;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.faq-item p {
+  margin-top: 10px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Homepage SEO Info Section */
+.home-info-section {
+  margin-top: 24px;
+  background: rgba(26, 34, 53, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.home-info-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.guide-tip-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.guide-tip-item {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--primary);
+}
+
+.guide-tip-item strong {
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
    Responsive Adaptations
    ========================================================================== */
 @media (max-width: 360px) {
@@ -847,3 +1154,4 @@ html, body {
     font-size: 1.1rem;
   }
 }
+
