@@ -1,10 +1,16 @@
 User-agent: *
 Allow: /
 
-User-agent: Mediapartners-Google
+User-agent: Googlebot
 Allow: /
 
-User-agent: Googlebot
+User-agent: Yeti
+Allow: /
+
+User-agent: Daumoa
+Allow: /
+
+User-agent: Mediapartners-Google
 Allow: /
 
 Sitemap: https://1bun-quiz.kr/sitemap.xml
