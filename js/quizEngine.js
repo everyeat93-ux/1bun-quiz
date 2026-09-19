@@ -1,6 +1,6 @@
 /**
  * 딱1분 오늘의 맞춤법 퀴즈 - Quiz Engine
- * 1,825개 데이터셋 기반 날짜 연산 출제 및 LocalStorage 스트릭 시스템
+ * 10,000개 데이터셋 기반 날짜 연산 출제 및 LocalStorage 스트릭 시스템
  */
 
 (function(window) {
