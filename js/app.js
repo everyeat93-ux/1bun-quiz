@@ -354,16 +354,16 @@
   }
 
   /**
-   * Trigger AdSense adsbygoogle push
+   * Trigger AdSense adsbygoogle push (Only if ad slots exist in DOM)
    */
   function triggerAdSense() {
     try {
-      if (window.adsbygoogle && Array.isArray(window.adsbygoogle)) {
+      const adSlots = document.querySelectorAll('ins.adsbygoogle');
+      if (adSlots.length > 0 && window.adsbygoogle) {
         window.adsbygoogle.push({});
       }
     } catch (e) {
-      // AdSense script will handle gracefully
-      console.log('AdSense slot prepared');
+      // Graceful fallback
     }
   }
 
