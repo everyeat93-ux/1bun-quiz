@@ -57,7 +57,9 @@
         maxStreak: 0,
         totalSolved: 0,
         totalCorrect: 0,
-        history: []
+        history: [],
+        recentSolvedIds: [],
+        recentSignatures: []
       };
     }
 
@@ -121,19 +123,44 @@
     }
 
     /**
-     * Pick a random quiz from the dataset for Bonus / Next Question mode
+     * Get unique topic signature for a quiz (e.g. sorted options pair)
+     */
+    getQuizSignature(quiz) {
+      if (!quiz) return '';
+      const optA = (quiz.optionA || '').trim();
+      const optB = (quiz.optionB || '').trim();
+      return [optA, optB].sort().join('::');
+    }
+
+    /**
+     * Pick a random quiz with smart deduplication & topic cooldown
      */
     getRandomBonusQuiz(category = 'ALL', excludeId = null) {
       const pool = this.getQuizzesByCategory(category);
       if (pool.length === 0) return null;
-      let candidate;
-      let tries = 0;
-      do {
-        const randomIndex = Math.floor(Math.random() * pool.length);
-        candidate = pool[randomIndex];
-        tries++;
-      } while (candidate && candidate.id === excludeId && tries < 10);
-      return candidate;
+
+      const recentIds = new Set(this.state.recentSolvedIds || []);
+      const recentSigs = new Set(this.state.recentSignatures || []);
+
+      if (excludeId) recentIds.add(excludeId);
+
+      // Phase 1: Exclude both recent IDs and recent topic signatures (No repeat questions OR same-topic questions!)
+      let candidates = pool.filter(q => !recentIds.has(q.id) && !recentSigs.has(this.getQuizSignature(q)));
+
+      // Phase 2: If pool exhausted, fallback to excluding just recent IDs
+      if (candidates.length === 0) {
+        candidates = pool.filter(q => !recentIds.has(q.id));
+      }
+
+      // Phase 3: If entire category completed, only exclude the immediate previous question
+      if (candidates.length === 0) {
+        candidates = pool.filter(q => q.id !== excludeId);
+      }
+
+      if (candidates.length === 0) return pool[0];
+
+      const randomIndex = Math.floor(Math.random() * candidates.length);
+      return candidates[randomIndex];
     }
 
     /**
@@ -195,6 +222,23 @@
       });
       if (this.state.history.length > 30) {
         this.state.history.pop();
+      }
+
+      // Smart Deduplication: Keep recent solved IDs and topic signatures
+      if (!Array.isArray(this.state.recentSolvedIds)) this.state.recentSolvedIds = [];
+      if (!Array.isArray(this.state.recentSignatures)) this.state.recentSignatures = [];
+
+      this.state.recentSolvedIds.push(quiz.id);
+      if (this.state.recentSolvedIds.length > 100) {
+        this.state.recentSolvedIds.shift();
+      }
+
+      const sig = this.getQuizSignature(quiz);
+      if (sig) {
+        this.state.recentSignatures.push(sig);
+        if (this.state.recentSignatures.length > 40) {
+          this.state.recentSignatures.shift();
+        }
       }
 
       this.saveState();

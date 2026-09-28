@@ -64,6 +64,7 @@
 
     try {
       await window.QuizEngine.init();
+      updateCategoryTabsUI();
       loadTodayQuiz();
       updateStreakUI();
     } catch (err) {
@@ -80,6 +81,43 @@
       navigator.serviceWorker.register('./sw.js')
         .then(() => console.log('SW registered'))
         .catch((err) => console.warn('SW registration failed:', err));
+    }
+  }
+
+  /**
+   * Update category tabs count dynamically from QuizEngine pool
+   */
+  function updateCategoryTabsUI() {
+    if (!window.QuizEngine || !window.QuizEngine.quizzes) return;
+    const allCount = window.QuizEngine.quizzes.length;
+    
+    // Count per category
+    const counts = { 'ALL': allCount };
+    window.QuizEngine.quizzes.forEach(q => {
+      if (q.category) {
+        counts[q.category] = (counts[q.category] || 0) + 1;
+      }
+    });
+
+    const icons = {
+      'ALL': '🌟 전체',
+      '맞춤법': '📝 맞춤법',
+      '시사·경제': '💡 시사·경제',
+      '역사·문화': '🏛️ 역사·문화',
+      '과학·IT': '🔬 과학·IT',
+      '생활·상식': '☕ 생활·상식'
+    };
+
+    categoryTabs.forEach(tab => {
+      const cat = tab.getAttribute('data-category');
+      const baseLabel = icons[cat] || cat;
+      const count = counts[cat] || 0;
+      tab.textContent = `${baseLabel} (${count.toLocaleString()})`;
+    });
+
+    const modeBannerCount = document.getElementById('mode-banner-count');
+    if (modeBannerCount) {
+      modeBannerCount.textContent = `(${allCount.toLocaleString()}개 엄선 퀴즈)`;
     }
   }
 

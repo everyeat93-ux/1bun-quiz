@@ -136,12 +136,12 @@
 
     <!-- Category Filter Tabs Navigation -->
     <nav class="category-tabs-bar" id="category-tabs-bar" aria-label="퀴즈 카테고리 선택">
-      <button type="button" class="category-tab active" data-category="ALL">🌟 전체 (10,000)</button>
-      <button type="button" class="category-tab" data-category="맞춤법">📝 맞춤법 (2,000)</button>
-      <button type="button" class="category-tab" data-category="시사·경제">💡 시사·경제 (2,000)</button>
-      <button type="button" class="category-tab" data-category="역사·문화">🏛️ 역사·문화 (2,000)</button>
-      <button type="button" class="category-tab" data-category="과학·IT">🔬 과학·IT (2,000)</button>
-      <button type="button" class="category-tab" data-category="생활·상식">☕ 생활·상식 (2,000)</button>
+      <button type="button" class="category-tab active" data-category="ALL">🌟 전체</button>
+      <button type="button" class="category-tab" data-category="맞춤법">📝 맞춤법</button>
+      <button type="button" class="category-tab" data-category="시사·경제">💡 시사·경제</button>
+      <button type="button" class="category-tab" data-category="역사·문화">🏛️ 역사·문화</button>
+      <button type="button" class="category-tab" data-category="과학·IT">🔬 과학·IT</button>
+      <button type="button" class="category-tab" data-category="생활·상식">☕ 생활·상식</button>
     </nav>
 
     <!-- Quiz Subheader & Meta Bar -->
@@ -161,7 +161,7 @@
 
     <!-- Mode Indicator Banner (Shown in Bonus / Practice Mode) -->
     <div class="mode-banner" id="mode-banner">
-      <span>🚀 <strong>상식 마스터 모드</strong> (10,000 문제 보유)</span>
+      <span>🚀 <strong>상식 마스터 모드</strong> <span id="mode-banner-count">(엄선 퀴즈)</span></span>
       <button type="button" class="reset-daily-btn" id="return-today-quiz-btn">오늘의 퀴즈로</button>
     </div>
 
@@ -244,7 +244,7 @@
         <div class="action-grid">
           <!-- Next Knowledge Quiz Button -->
           <button type="button" class="btn-primary btn-next-quiz" id="next-quiz-btn">
-            <span>⚡ 다음 상식 문제 풀기 (10,000문제 보유) ➔</span>
+            <span>⚡ 다음 상식 문제 풀기 ➔</span>
           </button>
 
           <button type="button" class="btn-secondary btn-share" id="share-quiz-btn">
@@ -268,7 +268,7 @@
 
           <!-- Bonus Quiz Action Button -->
           <button type="button" class="btn-secondary btn-bonus" id="bonus-quiz-btn" style="display:none;">
-            <span>⚡ 보너스 문제 풀기 (10,000문제 보유)</span>
+            <span>⚡ 보너스 문제 풀기</span>
           </button>
         </div>
 
