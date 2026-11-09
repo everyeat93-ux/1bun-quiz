@@ -2038,7 +2038,7 @@ def render_article_html(art):
         <div class="article-cta-box">
           <div class="cta-content">
             <h3>매일 하루 10초, 지식을 쌓는 1분 루틴!</h3>
-            <p>10,000개의 엄선된 퀴즈로 뇌 건강과 맞춤법 상식을 채워보세요.</p>
+            <p>엄선된 일일 상식 퀴즈와 50편의 전문 백과사전으로 뇌 건강과 맞춤법 상식을 채워보세요.</p>
           </div>
           <a href="../index.html" class="btn-primary" style="text-decoration: none; text-align:center;">오늘의 상식 퀴즈 풀기 ➔</a>
         </div>
@@ -2243,7 +2243,7 @@ def render_category_hub_html(hub):
     <section class="article-cta-box" style="margin-top: 32px;">
       <div class="cta-content">
         <h3>{hub['category']} 실전 퀴즈 풀고 뇌를 깨워보세요!</h3>
-        <p>10,000개의 방대한 퀴즈 데이터베이스로 매일 지식을 테스트하세요.</p>
+        <p>엄선된 데일리 상식 퀴즈와 50편의 전문 백과사전으로 매일 지식을 테스트하세요.</p>
       </div>
       <a href="./index.html" class="btn-primary" style="text-decoration: none; text-align:center;">오늘의 {hub['category']} 퀴즈 풀기 ➔</a>
     </section>

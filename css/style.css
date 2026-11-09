@@ -2314,5 +2314,318 @@ html, body {
   }
 }
 
+/* ==========================================================================
+   Homepage Rich Magazine & Portal Showcase Styles
+   ========================================================================== */
+
+.section-desc-sub {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+/* Featured Editorial Column */
+.home-featured-column {
+  background: linear-gradient(145deg, rgba(30, 41, 67, 0.9) 0%, rgba(17, 24, 39, 0.95) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(99, 102, 241, 0.08);
+}
+
+.featured-column-content {
+  margin-top: 12px;
+}
+
+.featured-column-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.featured-column-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.featured-column-title a:hover {
+  color: var(--primary-light);
+}
+
+.featured-column-lead {
+  font-size: 0.92rem;
+  color: #CBD5E1;
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+
+.featured-column-lead strong {
+  color: #FFFFFF;
+}
+
+.featured-column-summary-box {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.summary-box-title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #FBBF24;
+  margin-bottom: 6px;
+}
+
+.summary-box-desc {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.summary-examples-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.86rem;
+  color: #94A3B8;
+}
+
+.summary-examples-list strong {
+  color: #38BDF8;
+}
+
+.featured-column-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.column-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.btn-read-column {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  color: #C7D2FE;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-read-column:hover {
+  background: var(--primary);
+  color: #FFFFFF;
+  border-color: var(--primary-light);
+  transform: translateX(2px);
+}
+
+/* 5 Major Category Cards Grid */
+.portal-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.home-cat-card {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px 14px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+}
+
+.home-cat-card:hover {
+  background: var(--surface-hover);
+  border-color: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+.cat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.cat-card-icon {
+  font-size: 1.6rem;
+}
+
+.cat-card-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+.cat-card-name {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.cat-card-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+  flex-grow: 1;
+}
+
+.cat-card-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary-light);
+  align-self: flex-start;
+}
+
+/* Weekly Best 8 Guides Grid */
+.home-guides-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.home-guide-card {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.home-guide-card:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-highlight);
+  transform: translateY(-2px);
+}
+
+.guide-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.guide-read-time {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.guide-card-title {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.guide-card-snippet {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Editorial Principles Grid */
+.editorial-principles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.principle-card {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.principle-icon {
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+
+.principle-card h4 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.principle-card p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   Responsive Desktop Expansion (Tablets, Laptops, Desktops)
+   ========================================================================== */
+@media (min-width: 860px) {
+  .app-container {
+    max-width: 1040px;
+    padding: 24px 32px 50px 32px;
+  }
+
+  .main-content {
+    max-width: 580px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .portal-categories-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .home-guides-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .editorial-principles-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .category-articles-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
 
 
